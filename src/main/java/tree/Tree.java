@@ -77,6 +77,9 @@ public class Tree {
 
     public boolean remove(int key) {
         Trio trio = searchFromRoot(key);
+        if (trio.curr == null) {
+            return false;
+        }
         return removeWithTrio(trio, key);
     }
 
@@ -94,7 +97,16 @@ public class Tree {
             trio.curr.unlock();
             remove(key);
         }
-        
+        //
+
+        //
+        trio.curr.setDeleted();
+        if (trio.gprev != null) {
+            trio.gprev.unlock();
+        }
+        trio.prev.unlock();
+        trio.curr.unlock();
+        return true;
     }
 
     public boolean contains(int key) {

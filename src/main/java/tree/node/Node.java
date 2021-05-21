@@ -51,6 +51,10 @@ public class Node {
         this.leftChild = leftChild;
     }
 
+    public void setDeleted() {
+        this.alive = false;
+    }
+
     public Node getFather() {
         return father;
     }
